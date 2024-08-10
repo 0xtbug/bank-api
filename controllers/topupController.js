@@ -1,4 +1,4 @@
-const { User, Transaction } = require('../models');
+const { User, Topup } = require('../models');
 const { v4: uuidv4 } = require('uuid');
 
 exports.topup = async (req, res) => {
@@ -21,7 +21,7 @@ exports.topup = async (req, res) => {
     await user.save();
 
     // Buat catatan transaksi
-    const transaction = await Transaction.create({
+    const transaction = await Topup.create({
       top_up_id: uuidv4(),
       user_id: user.user_id,
       transaction_type: 'CREDIT', // Set transaction type to CREDIT
